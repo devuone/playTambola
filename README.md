@@ -1,6 +1,6 @@
 # play Thambola
 
-play here https://devuone.github.io/playThambola/
+play here https://devuone.github.io/playTambola/
 (Zoom out using browser settings if complete board not visible)
 
 Created this simple Bingo/Tambola/Housie (I don't know the difference) game to play with friends.
