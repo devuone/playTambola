@@ -1,5 +1,7 @@
 # playbingo
 
+play here https://devuone.github.io/playbingo/
+
 Created this simple Bingo/Tambola/Housie (I don't know the difference) game to play with friends.
 
 Play as a Host and control the board
