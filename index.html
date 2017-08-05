@@ -1,0 +1,543 @@
+<!DOCTYPE script PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <link rel="stylesheet" href="style.css">    
+  </link>
+  <script src="jquery.js">
+  </script>
+  <script src="prefixfree.js">
+  </script>
+  <script src="fireworks.js">
+  </script>
+  <script type="text/javascript">
+    <!--//-->
+      var myArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99];
+    $(document).ready(function(){
+      //tablescript();
+      $('#divPrize').fireworks();
+      document.getElementById('btnGetNxtNum').style.display = "block";
+	  $( ".modebtn" ).hover(function() {
+			$( this ).css({
+                        'background-color': 'orange'
+                    });
+			}, function() {
+			$( this ).css({
+                        'background-color': 'transparent'
+                    });
+		});
+	
+		$(".tktblock").click(function() {
+            if ($(this).css('background-color') == "rgb(255, 165, 0)") {
+                if (confirm("Are you sure you want to reset value of ticket block number ' " + $(this).html() + " '")) {
+                    $(this).css({
+                        'background-color': 'transparent'
+                    });
+                }
+            } else {
+                $(this).css({
+                    'background-color': "rgb(255, 165, 0)"
+                });
+		}
+		});
+      $(".prize").click(function(){
+        if($(this).css('background-color') == "rgb(255, 0, 0)"){
+          if (confirm("Are you sure you want to reset value of ' "+$(this).html()+" '")) {
+            $(this).css({
+              'background-color':'transparent'}
+                       );
+          }
+        }
+        else{
+          $(this).css({
+            'background-color': 'red'}
+                     );
+          $("#divPrize").css({
+            'display':'block','text-align':'center','font-size': '200','font-weight': 'bold'}
+                            );
+          $("#txtPrize").html( $(this).html()+'<br> SOLD !');
+          $("#divPrize").animate({
+            height:'100%',width:'100%'}
+                                );
+          setInterval(
+            function()
+            {
+              $("#txtPrize").fadeTo(200, 0.5).fadeTo(400, 1.0);
+            }
+            , 50);
+          setTimeout(
+            function()
+            {
+              $("#divPrize").css({
+                'display':'none','height':'0','width':'0'}
+                                );
+            }
+            , 4500);
+        }
+      }
+                       );
+      $(window).bind('beforeunload',function(){
+        //save info somewhere
+        return 'Games will reset\nAre you sure you want to leave?';
+      }
+                    );
+    }
+                     );
+					 
+    function tablescript(){
+	 var arr1to100 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100];
+     
+	  /*  var str = "";
+        var count = 1;
+        for (var i = 0; i < 10; i++) {
+            str = str + "<tr>";
+            for (var j = 1; j < 11; j++) {
+                if (j % 10 == 0) {
+                    str = str + "\<td id='block" + (i + 1) + "0'\>" + count + "\</td\>";
+                } else {
+                    str = str + "\<td id='block" + i + j + "'\>" + count + "\</td\>";
+                }
+                count++;
+            }
+        }
+        document.getElementById('test').innerHTML = str;
+	 */
+	 //get 15 random number in sorted array
+	var  arr15 = [0];
+	var k=0;
+	while(arr15.length<15){
+	var index = Math.floor(Math.random() * myArray.length);
+    var randomNumberBetween0and100 = arr1to100[index];
+	if(arr15.indexOf(randomNumberBetween0and100)<0){
+	arr15[k]=randomNumberBetween0and100;
+	k++;
+	}
+	}
+	arr15.sort(function(a, b){return a-b});
+	
+	//
+	var k=0;
+	var randomNumberBetween0and9arr=[0];
+	for(var i=0;i<3;i++)	{
+	var arr1to9 = [1, 2, 3, 4, 5, 6, 7, 8, 9]; 
+	for(var j=0;j<5;j++)	{
+		index = Math.floor((Math.random() * arr1to9.length));
+		randomNumberBetween0and9arr[j] = arr1to9[index];
+	    arr1to9.splice(index,1);
+	}
+	randomNumberBetween0and9arr.sort(function(a, b){return a-b});
+	randomNumberBetween0and9arr.forEach(function(item){
+	document.getElementById('tktblock'+i+''+item).innerHTML = arr15[k];
+	k++;
+	})
+	while(arr1to9.length>0){
+	index = Math.floor((Math.random() * arr1to9.length));
+	var randomNumberBetween0and9 = arr1to9[index];
+	document.getElementById('tktblock'+i+randomNumberBetween0and9).style.backgroundColor  = 'black';
+	arr1to9.splice(index,1);
+	}	
+		
+	}	
+    
+      /*var str="";
+      var count = 1;
+      var rowSize = 9;
+      for(var i=0;count<99;i++){
+        str = str + "<tr>";
+        for(var j=1;j<rowSize+1;j++){
+          if(count<10){
+            str= str+"\<td id='block"+"0"+count+"'\>"+count+"\</td\>";
+          }
+          else{
+            str= str+"\<td id='block"+count+"'\>"+count+"\</td\>";
+          }
+          count++;
+        }
+      }
+      document.getElementById('test').innerHTML = str;
+	  */
+    };
+    function doAction(){
+      document.getElementById('btnGetNxtNum').style.display = "none";
+	  document.getElementById('btnRolling').style.display = "block";
+      if(myArray.length > 0){
+        var index = Math.floor(Math.random() * myArray.length);
+        var randomNumberBetween0and100 = myArray[index];
+        //var randomNumberBetween0and100 = Math.floor(Math.random() * 100);
+        document.getElementById('spNum').innerHTML = randomNumberBetween0and100;
+        var num1=randomNumberBetween0and100%10;
+        var num2=randomNumberBetween0and100/10;
+        //alert((Math.floor(num2))+"and "+num1);
+        jQuery({
+          Counter: 0 }
+              ).animate({
+          Counter: 100 }
+                        , {
+          duration: 500,
+          easing: 'linear',
+          step: function () {
+            $('#spNum').text(Math.floor(Math.random() * 99));
+          }
+          ,
+          complete :function()
+          {
+            $("#spNum").html(randomNumberBetween0and100);
+            $("#block"+(Math.floor(num2))+num1).addClass("numselected");
+            document.getElementById('btnGetNxtNum').style.display = "block";
+			document.getElementById('btnRolling').style.display = "none";
+            //document.getElementById('block'+(Math.floor(num2))+num1).className ='numselected';
+          }
+        }
+                       );
+        myArray.splice(index,1);
+      }
+    }
+	function choosePlayMode(mode){
+	document.getElementById(mode).style.display='block';
+	document.getElementById('divMode').style.display='none';
+	}
+  </script>
+  <body  width="100%" style="font-family: Arial, Helvetica, sans-serif;" onload="tablescript()">
+    <DIV style="background: url(back.jpg);opacity: 0.05;top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: fixed;
+                z-index: -1;   ">
+      </div>
+    <DIV style="display: table;margin: 0 auto;">
+	<table border="2" cellspacing="20px" cellpadding="10" style="cellpadding:10px;font-size:50"id="divMode">
+        <tr>
+            <td width="50%" class="modebtn" onClick="choosePlayMode('divHost');"><h1>Play As Host</h1><br>( View Board )</td>
+			<td width="50%" class="modebtn" onClick="choosePlayMode('divPlayer');"><h1>Play As Player</h1><br>( Generate Ticket )</td>
+		</tr>
+	</table>
+      <div id="divPrize" style="display:none;position:fixed;left:0px;top:0px;color:red;background-color: white">
+        <span style="display: table;margin: 0 auto; text-shadow: 2px 2px #000000;" id="txtPrize">Hello
+        </span>
+      </div>
+      <table width="60%"cellspacing="20px" style="display:none;padding-top: 10px;padding-bottom: 10px" id="divHost">
+        <tr>
+          <td colspan=3 align="middle">
+            <img src="letsplay.png" />
+            <img src="tambola.jpg" />
+          </td>
+        </tr>
+        <tr>
+          <td width="33%">
+            <table border="1" cellpadding="10" style="font-size: 40;font-weight: bold">
+              <tbody>
+			   <tr style="height:50px;width:70px">
+							<td colspan="4">
+							<a id="btnGetNxtNum" style="display:none" href="javascript:return false;" class="btn-push green" onclick="doAction()">Roll It !</a>
+							<a id="btnRolling" style="display:none" href="javascript:return false;" class="btn-push green"  >Rolling..</a> 
+							</td>
+							<td colspan="6" style="text-align:center;height:50px;width:50px;"><span style="height:500px;width:500px;font-size: 150;font-weight: bold;text-shadow: 2px 2px #993333;" id='spNum'>00</span></td>
+							
+                        </tr>
+                <tr>
+                  <td id='block01'>1
+                  </td>
+                  <td id='block02'>2
+                  </td>
+                  <td id='block03'>3
+                  </td>
+                  <td id='block04'>4
+                  </td>
+                  <td id='block05'>5
+                  </td>
+                  <td id='block06'>6
+                  </td>
+                  <td id='block07'>7
+                  </td>
+                  <td id='block08'>8
+                  </td>
+                  <td id='block09'>9
+                  </td>
+                <tr>
+                  <td id='block10'>10
+                  </td>
+                  <td id='block11'>11
+                  </td>
+                  <td id='block12'>12
+                  </td>
+                  <td id='block13'>13
+                  </td>
+                  <td id='block14'>14
+                  </td>
+                  <td id='block15'>15
+                  </td>
+                  <td id='block16'>16
+                  </td>
+                  <td id='block17'>17
+                  </td>
+                  <td id='block18'>18
+                  </td>
+                <tr>
+                  <td id='block19'>19
+                  </td>
+                  <td id='block20'>20
+                  </td>
+                  <td id='block21'>21
+                  </td>
+                  <td id='block22'>22
+                  </td>
+                  <td id='block23'>23
+                  </td>
+                  <td id='block24'>24
+                  </td>
+                  <td id='block25'>25
+                  </td>
+                  <td id='block26'>26
+                  </td>
+                  <td id='block27'>27
+                  </td>
+                <tr>
+                  <td id='block28'>28
+                  </td>
+                  <td id='block29'>29
+                  </td>
+                  <td id='block30'>30
+                  </td>
+                  <td id='block31'>31
+                  </td>
+                  <td id='block32'>32
+                  </td>
+                  <td id='block33'>33
+                  </td>
+                  <td id='block34'>34
+                  </td>
+                  <td id='block35'>35
+                  </td>
+                  <td id='block36'>36
+                  </td>
+                <tr>
+                  <td id='block37'>37
+                  </td>
+                  <td id='block38'>38
+                  </td>
+                  <td id='block39'>39
+                  </td>
+                  <td id='block40'>40
+                  </td>
+                  <td id='block41'>41
+                  </td>
+                  <td id='block42'>42
+                  </td>
+                  <td id='block43'>43
+                  </td>
+                  <td id='block44'>44
+                  </td>
+                  <td id='block45'>45
+                  </td>
+                <tr>
+                  <td id='block46'>46
+                  </td>
+                  <td id='block47'>47
+                  </td>
+                  <td id='block48'>48
+                  </td>
+                  <td id='block49'>49
+                  </td>
+                  <td id='block50'>50
+                  </td>
+                  <td id='block51'>51
+                  </td>
+                  <td id='block52'>52
+                  </td>
+                  <td id='block53'>53
+                  </td>
+                  <td id='block54'>54
+                  </td>
+                <tr>
+                  <td id='block55'>55
+                  </td>
+                  <td id='block56'>56
+                  </td>
+                  <td id='block57'>57
+                  </td>
+                  <td id='block58'>58
+                  </td>
+                  <td id='block59'>59
+                  </td>
+                  <td id='block60'>60
+                  </td>
+                  <td id='block61'>61
+                  </td>
+                  <td id='block62'>62
+                  </td>
+                  <td id='block63'>63
+                  </td>
+                <tr>
+                  <td id='block64'>64
+                  </td>
+                  <td id='block65'>65
+                  </td>
+                  <td id='block66'>66
+                  </td>
+                  <td id='block67'>67
+                  </td>
+                  <td id='block68'>68
+                  </td>
+                  <td id='block69'>69
+                  </td>
+                  <td id='block70'>70
+                  </td>
+                  <td id='block71'>71
+                  </td>
+                  <td id='block72'>72
+                  </td>
+                <tr>
+                  <td id='block73'>73
+                  </td>
+                  <td id='block74'>74
+                  </td>
+                  <td id='block75'>75
+                  </td>
+                  <td id='block76'>76
+                  </td>
+                  <td id='block77'>77
+                  </td>
+                  <td id='block78'>78
+                  </td>
+                  <td id='block79'>79
+                  </td>
+                  <td id='block80'>80
+                  </td>
+                  <td id='block81'>81
+                  </td>
+                <tr>
+                  <td id='block82'>82
+                  </td>
+                  <td id='block83'>83
+                  </td>
+                  <td id='block84'>84
+                  </td>
+                  <td id='block85'>85
+                  </td>
+                  <td id='block86'>86
+                  </td>
+                  <td id='block87'>87
+                  </td>
+                  <td id='block88'>88
+                  </td>
+                  <td id='block89'>89
+                  </td>
+                  <td id='block90'>90
+                  </td>
+                <tr>
+                  <td id='block91'>91
+                  </td>
+                  <td id='block92'>92
+                  </td>
+                  <td id='block93'>93
+                  </td>
+                  <td id='block94'>94
+                  </td>
+                  <td id='block95'>95
+                  </td>
+                  <td id='block96'>96
+                  </td>
+                  <td id='block97'>97
+                  </td>
+                  <td id='block98'>98
+                  </td>
+                  <td id='block99'>99
+                  </td>
+              </tbody>
+            </table>
+          </td>
+          
+          <td width="30%">
+            <table border="1" cellpadding="10" style="font-size: 40;font-weight: bold;text-align: center;">
+              <tbody>
+                <tr>
+                  <td class="prize">Early Five
+                  </td>
+                  <td class="prize">Breakfast Column
+                  </td>
+                </tr>
+                <tr>
+                  <td class="prize">Early Seven
+                  </td>
+                  <td class="prize">Lunch Column
+                  </td>
+                </tr>
+                <tr>
+                  <td class="prize">Corners
+                  </td>
+                  <td class="prize">Dinner Column
+                  </td>
+                </tr>
+                <tr>
+                  <td class="prize">Middle Row
+                  </td>
+                  <td class="prize">Bottom Row
+                  </td>
+                </tr>
+                <td class="prize">Bull's  Eye
+                </td>
+                <td class="prize">Full House #1
+                </td>
+              </tr>
+            <tr>
+              <td class="prize">Hot N Cold
+              </td>
+              <td class="prize">Full House #2
+              </td>
+            </tr>
+            <tr>
+              <td class="prize">Top Row
+              </td>
+              <td class="prize">Full House #3
+              </td>
+            </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </table>
+  <table border="1" cellpadding="10" style="display:none;width:100%;font-size: 50;font-weight: bold" id="divPlayer">
+                    <tbody>
+						
+			<tr>
+                            <td id='tktblock01' class="tktblock">1</td>
+                            <td id='tktblock02' class="tktblock">2</td>
+                            <td id='tktblock03' class="tktblock">3</td>
+                            <td id='tktblock04' class="tktblock">4</td>
+                            <td id='tktblock05' class="tktblock">5</td>
+                            <td id='tktblock06' class="tktblock">6</td>
+                            <td id='tktblock07' class="tktblock">7</td>
+                            <td id='tktblock08' class="tktblock">8</td>
+                            <td id='tktblock09' class="tktblock">9</td>
+                         <tr>
+						 <tr>
+                            <td id='tktblock11' class="tktblock">1</td>
+                            <td id='tktblock12' class="tktblock">2</td>
+                            <td id='tktblock13' class="tktblock">3</td>
+                            <td id='tktblock14' class="tktblock">4</td>
+                            <td id='tktblock15' class="tktblock">5</td>
+                            <td id='tktblock16' class="tktblock">6</td>
+                            <td id='tktblock17' class="tktblock">7</td>
+                            <td id='tktblock18' class="tktblock">8</td>
+                            <td id='tktblock19' class="tktblock">9</td>
+                         <tr>
+						 <tr>
+                            <td id='tktblock21' class="tktblock">1</td>
+                            <td id='tktblock22' class="tktblock">2</td>
+                            <td id='tktblock23' class="tktblock">3</td>
+                            <td id='tktblock24' class="tktblock">4</td>
+                            <td id='tktblock25' class="tktblock">5</td>
+                            <td id='tktblock26' class="tktblock">6</td>
+                            <td id='tktblock27' class="tktblock">7</td>
+                            <td id='tktblock28' class="tktblock">8</td>
+                            <td id='tktblock29' class="tktblock">9</td>
+                         <tr>
+	</table>
+	
+	<table cellspacing="20px" cellpadding="10" style="cellpadding:10px;font-size:20">
+        <tr>
+            <td ><h3>Developed by Devesh Bajpai ( <a href="mailto:devuone@gmail.com" target="_top">devuone@gmail.com</a>)(<a href="https://www.facebook.com/devesh.bajpai1" target="_top">visit facebook profile</a> ) </h3></td>
+			</tr>
+	</table>
+</DIV>
+</body>
+</html>
