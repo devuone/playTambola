@@ -1,4 +1,4 @@
-# play Thambola
+# play Tambola
 
 play here https://devuone.github.io/playTambola/
 (Zoom out using browser settings if complete board not visible)
