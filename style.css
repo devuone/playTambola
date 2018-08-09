@@ -2,7 +2,7 @@
       background-color: orange;
     }
     .prizeselected{
-      background-color: red;
+      background-color: #ff5a5a;
       color:white;
     }
     .btn-push {
@@ -59,6 +59,10 @@
       box-shadow: 0px 5px 0px #46963f;
       text-shadow: 1px 1px 1px #46963f;
     }
+	
+.btn-push{
+	width:200px;
+}
 
 /* soical icon*/
 .fa {
